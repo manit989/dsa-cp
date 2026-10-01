@@ -1,0 +1,144 @@
+#include <bits/stdc++.h>
+#include <string>
+using namespace std;
+
+#define int long long
+#define vi vector<int>
+#define vvi vector<vi>
+#define pii pair<int,int>
+#define vpi vector<pii>
+#define f(i,a,b) for(int i=a; i<b; i++)
+#define fit(v) for (auto &x:v)
+#define vin(v) for (auto &x:v)	cin >> x
+#define rf(i,a,b) for(int i=a; i>=b; i--)
+#define all(x) (x).begin(), (x).end()
+#define sz(x) (int)(x).size()
+#define endl "\n"
+
+#define fastio() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
+
+#ifdef LOCAL
+#define dbg(x) cerr << #x << " = "; _print(x); cerr << endl;
+#else
+#define dbg(x)
+#endif
+
+template<class T> void _print(T x) { cerr << x; }
+template<class T, class V> void _print(pair<T,V> p) { cerr << "{"; _print(p.first); cerr << ","; _print(p.second); cerr << "}"; }
+template<class T> void _print(vector<T> v) { cerr << "["; for (auto i : v) { _print(i); cerr << " "; } cerr << "]"; }
+
+const int MOD = 1000000007;
+const int INF = 1000000000000000000LL;
+
+int mod_add(int a, int b) { return (a % MOD + b % MOD) % MOD; }
+int mod_sub(int a, int b) { return (a % MOD - b % MOD + MOD) % MOD; }
+int mod_mul(int a, int b) { return (a % MOD * b % MOD) % MOD; }
+int mod_pow(int a, int b) {
+    int res = 1;
+    a %= MOD;
+    while (b) {
+        if (b & 1) res = mod_mul(res, a);
+        a = mod_mul(a, a);
+        b >>= 1;
+    }
+    return res;
+}
+int mod_inv(int a) { return mod_pow(a, MOD - 2); }
+
+void solve() {
+    int n;
+    cin >> n;
+
+    vector<string> s(n),t(n);
+    vin(s);
+    vin(t);
+
+    int sc = 0,tc = 0;
+    for (auto &x:s) {
+	    for (auto y:x)	sc += (y == '#');
+    }
+    for (auto &x:t) {
+	    for (auto y:x)	tc += (y == '#');
+    }
+
+    if (sc != tc) {
+	    cout << "No" << "\n";
+	    return;
+    }
+
+    auto inv = [&](int i,int j){
+	    return (i>=0 && i<n && j>=0 && j<n);
+    };
+
+    int res = false;
+
+    f (it,0,4) {
+	vector<string> rs(n,string(n,'.'));
+	f (i,0,n) {
+		f (j,0,n) {
+			rs[j][n - 1 - i] = s[i][j];
+		}
+	}
+	s = rs;
+
+	int fcx,fcy,dx,dy;	
+	bool bfc = false;
+
+	for (int i=0;i<n && !bfc;i++) {
+		for (int j=0;j<n && !bfc;j++) {
+			if (s[i][j] == '#') {
+				fcx = i;
+				fcy = j;
+				bfc = true;
+			}
+		}
+	}
+
+	bfc = false;
+
+	for (int i=0;i<n && !bfc;i++) {
+		for (int j=0;j<n && !bfc;j++) {
+			if (t[i][j] == '#') {
+				dx = i - fcx;
+				dy = j - fcy;
+				bfc = true;
+			}
+		}
+	}
+
+	int cbt = true;
+
+	for (int i=0;i<n && cbt;i++) {
+		for (int j=0;j<n && cbt;j++) {
+			if (s[i][j] == '#'){
+				if (!inv(i + dx, j + dy)) {
+					cbt = false;
+				}
+				else if (t[i + dx][j + dy] != s[i][j]) {
+					cbt = false;
+				}
+			}
+		}
+	}
+
+	res |= cbt;
+    }
+
+    cout << (res ? "Yes" : "No") << "\n";
+}
+
+int32_t main() {
+    fastio();
+
+#ifdef LOCAL
+    freopen("inputf.in", "r", stdin);
+    freopen("output.in", "w", stdout);
+    freopen("error.txt", "w", stderr);
+#endif
+
+    int t = 1;
+    // cin >> t;
+    while (t--) solve();
+
+    return 0;
+}
