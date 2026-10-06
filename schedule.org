@@ -1,0 +1,42 @@
+#+TITLE: Competitive Programming & OA Preparation Schedule
+#+AUTHOR: CP Prep
+#+OPTIONS: toc:nil
+
+* Weekly Schedule
+
+| Day       | Focus Area                        | Target Deliverables                                                   | Max Time    |
+|-----------+-----------------------------------+-----------------------------------------------------------------------+-------------|
+| Monday    | ABC D Marathon (Logic & Impl)     | 2 ABC D problems (Diff: 800-1000), Prefix Sums/Binary Search/Greedy   | 1.5 hrs     |
+| Tuesday   | Cyan Drill (ABC E / Hard D)       | 1 Cyan problem (Diff: 1100-1400), strict 40-min rule, upsolving       | 1.5 hrs     |
+| Wednesday | Graphs & Trees                    | 2 ABC D/E problems (BFS, DFS, DSU, Dijkstra, Trees)                   | 1.5-2.0 hrs |
+| Thursday  | Dynamic Programming               | 1-2 ABC D/E problems (Knapsack, Digit DP, Prefix-optimized DP)        | 1.5-2.0 hrs |
+| Friday    | Upsolving & SQL                   | Re-code unsolved problems of the week + 2-3 LeetCode SQL 50 queries   | 1.0-1.5 hrs |
+| Saturday  | Live Contest                      | AtCoder Beginner Contest (ABC) live (5:30 PM IST) + post-contest D/E  | 2.0 hrs     |
+| Sunday    | Virtual Timed Contest & Upsolving | Upsolve Saturday E/F + Virtual timed run on older ABC (D & E only)    | 2.0-2.5 hrs |
+
+* Core Execution Rules
+- Skip problems A & B completely; only scan problem C if it has a non-trivial trick.
+- Apply the 40-minute rule: attempt with pen/paper first, consult hints only after 40 minutes, and re-implement from scratch.
+- Maintain a 2-line invariant journal for every editorial trick encountered.
+
+* Resources & Curated Sheets
+
+** USACO Guide (Silver & Gold)
+- [[https://usaco.guide/][usaco.guide]]
+- Best topic-wise CP roadmap; curated lists for Prefix Sums, Two Pointers, DSU, and Trees linking to AtCoder ABC/ARC.
+
+** AtCoder Educational DP Contest (EDPC)
+- [[https://atcoder.jp/contests/dp][AtCoder Educational DP Contest]]
+- 26 fundamental DP templates (A to Z). Target problems A through O for exhaustive OA coverage.
+
+** AtCoder Library Practice Contest (ALPC)
+- [[https://atcoder.jp/contests/practice2][AtCoder Library Practice Contest]]
+- Standard benchmark problems for Segment Trees, DSU, Floor Sum, and Graph Algorithms.
+
+** Kenkoooo Boot Camp (Medium & Hard)
+- [[https://kenkoooo.com/atcoder/#/table/][AtCoder Problems by Kenkoooo]]
+- Navigate to *Training* -> *Boot camp for Beginners*. Solve the *Medium* (ABC C/D) and *Hard* (ABC D/E) sets.
+
+** LeetCode SQL 50
+- [[https://leetcode.com/studyplan/top-sql-50/][LeetCode Top SQL 50 Study Plan]]
+- Free curated set covering Window Functions, CTEs, Joins, and Aggregations needed for technical screenings.
