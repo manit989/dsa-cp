@@ -1,0 +1,62 @@
+#+TITLE: AtCoder Graph & Tree Practice (ABC212+)
+#+AUTHOR: CP Prep
+#+OPTIONS: toc:nil
+
+* BFS & 01-BFS
+
+| Status | Contest & Task | Problem Name         | Rating Band   |
+|--------+----------------+----------------------+---------------|
+| [ ]    | ABC224 D       | 8 Puzzle on Graph    | Green (~1050) |
+| [ ]    | ABC246 E       | Bishop 2             | Cyan (~1350)  |
+| [ ]    | ABC254 E       | Small d and k        | Green (~900)  |
+| [ ]    | ABC272 D       | Root M Leaper        | Green (~1000) |
+| [ ]    | ABC277 E       | Crystal Switches     | Cyan (~1250)  |
+| [ ]    | ABC289 E       | Swap Places          | Cyan (~1300)  |
+| [ ]    | ABC309 D       | Add One Edge         | Green (~1050) |
+| [ ]    | ABC317 E       | Avoid Eye Contact    | Cyan (~1200)  |
+
+* DFS & Graph Connectivity
+
+| Status | Contest & Task | Problem Name               | Rating Band        |
+|--------+----------------+----------------------------+--------------------|
+| [ ]    | ABC226 C       | Martial Arts               | Green (~850)       |
+| [ ]    | ABC282 D       | Make Bipartite 2           | Cyan (~1300)       |
+| [ ]    | ABC284 C       | Count Connected Components | Brown/Green (~600) |
+| [ ]    | ABC284 E       | Count Simple Paths         | Cyan (~1250)       |
+| [ ]    | ABC287 C       | Path Graph?                | Green (~850)       |
+| [ ]    | ABC317 C       | Remembering the Days       | Green (~950)       |
+
+* Disjoint Set Union (DSU)
+
+| Status | Contest & Task | Problem Name           | Rating Band   |
+|--------+----------------+------------------------+---------------|
+| [ ]    | ABC214 D       | Sum of Maximum Weights | Cyan (~1350)  |
+| [ ]    | ABC218 E       | Destruction            | Green (~1100) |
+| [ ]    | ABC228 D       | Linear Probing         | Cyan (~1250)  |
+| [ ]    | ABC231 D       | Neighbors              | Green (~1000) |
+| [ ]    | ABC235 E       | MST + 1                | Cyan (~1350)  |
+| [ ]    | ABC264 E       | Blackout 2             | Cyan (~1300)  |
+| [ ]    | ABC288 C       | Don't be cycle         | Green (~850)  |
+| [ ]    | ABC292 D       | Unicyclic Components   | Green (~950)  |
+| [ ]    | ABC304 E       | Good Graph             | Cyan (~1200)  |
+
+* Dijkstra & Shortest Path
+
+| Status | Contest & Task | Problem Name             | Rating Band   |
+|--------+----------------+--------------------------+---------------|
+| [ ]    | ABC237 E       | Skiing                   | Cyan (~1350)  |
+| [ ]    | ABC252 E       | Road Reduction           | Cyan (~1250)  |
+| [ ]    | ABC305 E       | Art Gallery on Graph     | Cyan (~1350)  |
+| [ ]    | ABC325 E       | Our Clients, Please Wait | Green (~1100) |
+| [ ]    | ABC340 D       | Super Takahashi Bros.    | Green (~1050) |
+| [ ]    | ABC362 D       | Shortest Path 3          | Green (~1000) |
+
+* Tree Algorithms
+
+| Status | Contest & Task | Problem Name     | Rating Band   |
+|--------+----------------+------------------+---------------|
+| [ ]    | ABC213 D       | Takahashi Tour   | Green (~950)  |
+| [ ]    | ABC239 E       | Subtree K-th Max | Cyan (~1250)  |
+| [ ]    | ABC240 E       | Ranges on Tree   | Cyan (~1300)  |
+| [ ]    | ABC270 C       | Simple path      | Green (~900)  |
+| [ ]    | ABC333 D       | Erase Leaves     | Green (~1000) |

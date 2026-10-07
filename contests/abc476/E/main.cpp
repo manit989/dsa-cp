@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
+#include <climits>
 using namespace std;
-using namespace __gnu_pbds;
 
 #define int long long
 #define vi vector<int>
@@ -74,89 +72,64 @@ int mod_pow(int a, int b) {
 }
 int mod_inv(int a) { return mod_pow(a, MOD - 2); }
 
-int C(int n, int k) {
-  if (k < 0 || k > n)
-    return 0;
-  if (k == 0 || k == n)
-    return 1;
+int n, m;
 
-  int num = 1, den = 1;
-  for (int i = 1; i <= k; i++) {
-    num = mod_mul(num, (n - i + 1) % MOD);
-    den = mod_mul(den, i);
-  }
-  return mod_mul(num, mod_inv(den));
-}
-struct DSU {
-  vi parent, rank;
-  DSU(int n) {
-    parent.resize(n);
-    rank.resize(n, 0);
-    f(i, 0, n) parent[i] = i;
-  }
-  int find(int x) {
-    if (parent[x] != x)
-      parent[x] = find(parent[x]);
-    return parent[x];
-  }
-  bool unite(int x, int y) {
-    int xr = find(x), yr = find(y);
-    if (xr == yr)
-      return false;
-    if (rank[xr] < rank[yr])
-      swap(xr, yr);
-    parent[yr] = xr;
-    if (rank[xr] == rank[yr])
-      rank[xr]++;
-    return true;
-  }
+struct Node {
+  pii mn;
+  pii mx;
 };
 
-vi sieve(int n) {
-  vi isPrime(n + 1, 1);
-  isPrime[0] = isPrime[1] = 0;
-  for (int i = 2; i * i <= n; i++) {
-    if (isPrime[i]) {
-      for (int j = i * i; j <= n; j += i)
-        isPrime[j] = 0;
-    }
+Node neutral() { return {{INT_MAX, -1}, {-1, -1}}; }
+Node merge(Node a, Node b) { return {min(a.mn, b.mn), max(a.mx, b.mx)}; }
+
+vector<Node> tree;
+
+void update(int pos, int val) {
+  pos += n;
+  tree[pos] = {{val, pos - n}, {val, pos - n}};
+  for (pos /= 2; pos >= 1; pos /= 2) {
+    tree[pos] = merge(tree[2 * pos], tree[2 * pos + 1]);
   }
-  return isPrime;
 }
 
-int gcd(int a, int b) { return b ? gcd(b, a % b) : a; }
-
-int n, m;
-pair<pii, pii> t[4 * ((int)2e5 + 2) + 1];
-
-void build(vi &a, int v, int l, int r) {
-  if (r - l == 1) {
-    t[v] = {{a[l], l}, {a[l], l}};
-  } else {
-    int m = (l + r) / 2;
-    build(a, v * 2, l, m);
-    build(a, v * 2 + 1, m, r);
-    if (t[v * 2].ff.ff < t[v * 2 + 1].ff.ff) {
-      if (t[v * 2].ss.ff < t[v * 2 + 1].ss.ff) {
-        t[v] = {{}, {}};
-      } else {
-        t[v] = {{}, {}};
-      }
-    } else {
-      if (t[v * 2].ss.ff < t[v * 2 + 1].ss.ff) {
-        t[v] = {{}, {}};
-      } else {
-        t[v] = {{}, {}};
-      }
-    }
+Node query(int l, int r) {
+  Node res = neutral();
+  for (l += n, r += n + 1; l < r; l /= 2, r /= 2) {
+    if (l & 1)
+      res = merge(res, tree[l++]);
+    if (r & 1)
+      res = merge(res, tree[--r]);
   }
+  return res;
 }
 
 void solve() {
   cin >> n >> m;
 
   vi p(n);
-  vin(p);
+  tree.assign(2 * n, neutral());
+  f(i, 0, n) {
+    cin >> p[i];
+    update(i, p[i]);
+  }
+
+  while (m--) {
+    int l, r;
+    cin >> l >> r;
+    l--, r--;
+
+    Node ans = query(l, r);
+    int min_idx = ans.mn.ss;
+    int max_idx = ans.mx.ss;
+
+    swap(p[min_idx], p[max_idx]);
+    update(min_idx, p[min_idx]);
+    update(max_idx, p[max_idx]);
+  }
+
+  for (auto x : p)
+    cout << x << " ";
+  cout << "\n";
 }
 
 int32_t main() {
