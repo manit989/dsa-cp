@@ -8,7 +8,7 @@
 |--------+----------------+----------------------+---------------|
 | [X]    | ABC224 D       | 8 Puzzle on Graph    | Green (~1050) |
 | [ ]    | ABC246 E       | Bishop 2             | Cyan (~1350)  |
-| [ ]    | ABC254 E       | Small d and k        | Green (~900)  |
+| [X]    | ABC254 E       | Small d and k        | Green (~900)  |
 | [ ]    | ABC272 D       | Root M Leaper        | Green (~1000) |
 | [ ]    | ABC277 E       | Crystal Switches     | Cyan (~1250)  |
 | [ ]    | ABC289 E       | Swap Places          | Cyan (~1300)  |
