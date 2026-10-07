@@ -1,5 +1,8 @@
 #include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
+using namespace __gnu_pbds;
 
 #define int long long
 #define vi vector<int>
@@ -11,15 +14,10 @@ using namespace std;
 #define vin(v)                                                                 \
   for (auto &x : v)                                                            \
   cin >> x
-#define vpin(v)                                                                \
-  for (auto &x : v)                                                            \
-  cin >> x.first >> x.second
 #define rf(i, a, b) for (int i = a; i >= b; i--)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
 #define endl "\n"
-#define ff first
-#define ss second
 
 #define fastio()                                                               \
   ios_base::sync_with_stdio(false);                                            \
@@ -71,49 +69,101 @@ int mod_pow(int a, int b) {
 }
 int mod_inv(int a) { return mod_pow(a, MOD - 2); }
 
+int C(int n, int k) {
+  if (k < 0 || k > n)
+    return 0;
+  if (k == 0 || k == n)
+    return 1;
+
+  int num = 1, den = 1;
+  for (int i = 1; i <= k; i++) {
+    num = mod_mul(num, (n - i + 1) % MOD);
+    den = mod_mul(den, i);
+  }
+  return mod_mul(num, mod_inv(den));
+}
+struct DSU {
+  vi parent, rank;
+  DSU(int n) {
+    parent.resize(n);
+    rank.resize(n, 0);
+    f(i, 0, n) parent[i] = i;
+  }
+  int find(int x) {
+    if (parent[x] != x)
+      parent[x] = find(parent[x]);
+    return parent[x];
+  }
+  bool unite(int x, int y) {
+    int xr = find(x), yr = find(y);
+    if (xr == yr)
+      return false;
+    if (rank[xr] < rank[yr])
+      swap(xr, yr);
+    parent[yr] = xr;
+    if (rank[xr] == rank[yr])
+      rank[xr]++;
+    return true;
+  }
+};
+
+void bfs(int start, vi adj[], vi &vis) {
+  queue<int> q;
+  q.push(start);
+  vis[start] = 1;
+  while (!q.empty()) {
+    int node = q.front();
+    q.pop();
+    for (int child : adj[node]) {
+      if (!vis[child]) {
+        vis[child] = 1;
+        q.push(child);
+      }
+    }
+  }
+}
+
 void solve() {
   int m;
   cin >> m;
 
-  int u, v;
-  vi G[10];
-  f(i, 0, m) {
-    cin >> u >> v;
-    G[u].push_back(v);
-    G[v].push_back(u);
-  }
+  string v = "0123456780";
+  string u = "0000000000";
 
-  int p;
-  string s = "999999999";
+  vpi e(m);
+  for (auto &x : e)
+    cin >> x.first >> x.second;
+
   f(i, 1, 9) {
-    cin >> p;
-    s[p - 1] = i + '0';
+    int a;
+    cin >> a;
+    u[a] = i + '0';
   }
 
-  queue<string> Q;
-  Q.push(s);
-  map<string, int> mp;
-  mp[s] = 0;
+  map<string, int> vis;
+  queue<pair<string, int>> q;
+  vis[u] = 0;
+  q.push({u, 0});
 
-  while (!Q.empty()) {
-    string s = Q.front();
-    Q.pop();
-    f(i, 1, 10) if (s[i - 1] == '9') v = i;
+  while (!q.empty()) {
+    auto [p, d] = q.front();
+    q.pop();
 
-    for (auto u : G[v]) {
-      string t = s;
-      swap(t[u - 1], t[v - 1]);
-      if (mp.count(t))
-        continue;
-      mp[t] = mp[s] + 1;
-      Q.push(t);
+    for (auto &x : e) {
+      auto [i, j] = x;
+      if ((p[i] == '0') != (p[j] == '0')) {
+        string t = p;
+        swap(t[i], t[j]);
+
+        if (!vis.count(t) || (vis[t] > d + 1)) {
+          vis[t] = d + 1;
+          q.push({t, d + 1});
+        }
+      }
     }
   }
 
-  if (mp.count("123456789") == 0)
-    cout << -1 << endl;
-  else
-    cout << mp["123456789"] << endl;
+  cout << (vis.count(v) ? vis[v] : -1) << "\n";
 }
 
 int32_t main() {

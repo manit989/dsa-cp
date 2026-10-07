@@ -6,7 +6,7 @@
 
 | Status | Contest & Task | Problem Name         | Rating Band   |
 |--------+----------------+----------------------+---------------|
-| [ ]    | ABC224 D       | 8 Puzzle on Graph    | Green (~1050) |
+| [X]    | ABC224 D       | 8 Puzzle on Graph    | Green (~1050) |
 | [ ]    | ABC246 E       | Bishop 2             | Cyan (~1350)  |
 | [ ]    | ABC254 E       | Small d and k        | Green (~900)  |
 | [ ]    | ABC272 D       | Root M Leaper        | Green (~1000) |
